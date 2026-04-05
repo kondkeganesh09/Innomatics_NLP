@@ -1,64 +1,89 @@
-🚀 Token Classification using BERT (NER)
- 
-📌 Overview
-This project demonstrates fine-tuning a transformer model for **Token Classification** using BERT.
+🧠 NLP Token Classification using BERT
+POS Tagging & Chunking
 
-The model is trained to identify named entities such as:
-- 👤 Person (PER)
-- 🏢 Organization (ORG)
-- 📍 Location (LOC)
+This project demonstrates fine-tuning a transformer model using BERT (bert-base-uncased) for token classification tasks, including:
+Part-of-Speech (POS) Tagging
+Chunking (Phrase Detection)
 
-## 🧠 Objective
-To build a system that assigns labels to each token in a sentence using transformer-based architecture.
-## 🛠️ Tech Stack
-- Python
-- Hugging Face Transformers
-- PyTorch
-- Datasets Library
-- SeqEval
-## 📊 Dataset
-- WikiANN (NER Dataset)
-- Used due to compatibility with latest Hugging Face API
+The implementation is built using Hugging Face Transformers and PyTorch, focusing on real-world NLP pipeline design.
 
- ⚙️ Pipeline
-Raw Text → Tokenization → Label Alignment → Model Training → Evaluation → Inference
+📌 Project Overview
 
- 🔥 Model Used
-- BERT (bert-base-uncased)
+Token classification assigns a label to each word in a sentence.
 
-📈 Evaluation Metrics
-- Precision
-- Recall
-- F1 Score
+🔹 POS Tagging
 
-🧪 Sample Output
+Identifies grammatical roles:
 
-Input:
+NNP → Proper Noun
+VBD → Verb (Past Tense)
+IN → Preposition
+🔹 Chunking
+
+Identifies phrase structure:
+
+B-NP → Beginning of Noun Phrase
+I-NP → Inside Noun Phrase
+B-VP → Verb Phrase
+B-PP → Prepositional Phrase
+⚙️ Tech Stack
+Python
+Hugging Face Transformers
+PyTorch
+Datasets Library
+🔄 Pipeline
+
+Raw Text → Tokenization → Label Alignment → BERT Model → Training → Evaluation → Inference
+
+🧪 Model Details
+Model: bert-base-uncased
+Task: Token Classification
+Dataset: CoNLL-style dataset
+Training Epochs: 3
+Evaluation Metric: Accuracy
+
+📊 Results
+Achieved ~97% accuracy on POS tagging
+Model learned meaningful token-level patterns
+Minor errors observed due to contextual limitations
+
+🔍 Sample Output
+Input
 Elon Musk founded Tesla in California
 
-Output:
-| Word        | Entity Type | Confidence |
-|------------|------------|-----------|
-| Elon        | Person (PER) | 0.95 |
-| Musk        | Person (PER) | 0.96 |
-| Tesla       | Organization (ORG) | 0.99 |
-| California  | Location (LOC) | 0.98 |
--
+POS Output
+
+Elon → NNP
+Musk → NNP
+founded → VBD
+Tesla → NNP
+in → IN
+California → NNP
+
+Chunking Output
+
+Elon → B-NP
+Musk → I-NP
+founded → B-VP
+Tesla → B-NP
+in → B-PP
+California → B-NP
+
 ⚠️ Challenges Faced
-- Token-label alignment with subwords
-- Dataset compatibility issues (deprecated datasets)
-- Debugging static vs dynamic outputs
-- Balancing training time and accuracy
+Dataset loading issues due to updated libraries
+Handling subword tokenization in BERT
+Label alignment for token classification
+Debugging inconsistent inference outputs
 
 💡 Key Learnings
-- How BERT performs token classification
-- Handling real-world NLP issues
-- Importance of data size and epochs
-- Debugging ML pipelines
+Importance of preprocessing in NLP pipelines
+How transformer models handle sequence labeling
+Real-world implementation of token classification
+Evaluation and debugging of ML models
 
-🚀 Future Improvements
-- Deploy using FastAPI / Streamlit
+🙌 Acknowledgement
 
+This project was completed as part of my learning journey with Innomatics Research Labs.
 
-## 👨‍💻 Author
+👨‍💻 Author
 Ganesh
